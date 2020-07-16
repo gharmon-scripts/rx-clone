@@ -1,0 +1,19 @@
+
+resources:
+  version: 5.16.1.2
+  should_auto_register: false
+  pc_vm_list:
+  - vm_name: PC1
+    container_uuid: e0a02793-de3e-42ec-8ed4-9caa988cb21e
+    num_sockets: 4
+    data_disk_size_bytes: 536870912000
+    memory_size_bytes: 17179869184
+    dns_server_ip_list:
+    - 10.63.25.40
+    nic_list:
+    - ip_list:
+      - 10.63.31.94
+      network_configuration:
+        network_uuid: ab30d70f-da49-4b9c-8c2b-31da07063d6c
+        subnet_mask: 255.255.252.0
+        default_gateway: 10.63.28.1

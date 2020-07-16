@@ -1,0 +1,32 @@
+- name: Deploy Prism Central
+  hosts: startropics
+  become: no
+  gather_facts: yes 
+  vars:
+  roles:
+  tasks: 
+ 
+  - set_fact:
+      request: "{{lookup('file','pc-req.yml') | from_yaml | to_json}}"
+  - debug:
+      msg: "{{request}}"
+  - name: Start PC VM deployment
+    uri:
+     url: "https://{{ansible_host}}:9440/api/nutanix/v3/prism_central"
+     method: POST
+     validate_certs: no
+     user: "admin"
+     password: "zxm4=py25PVs:Aw"
+     body_format: json
+     body: "{{request}}"
+     force_basic_auth: yes
+     status_code: 202
+    register: output
+  - debug:
+      msg: "{{output.json.task_uuid}}"
+  - set_fact:
+      task_uuid: "{{output.json.task_uuid}}"
+  - set_fact:
+      monitor_ip: "{{ansible_host'}}"
+  - set_fact:
+      monitor_pwd: "zxm4=py25PVs:Aw"

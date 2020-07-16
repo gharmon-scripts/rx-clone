@@ -1,16 +1,16 @@
 - name: End User Aggreement
   hosts: startropics
   become: no
-  gather_facts: no
+  gather_facts: yes 
   vars:
   roles:
   tasks:
-    - name: Get Eula
+    - name: Disabling Pulse
       uri:
-       url: https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v1/eulas/accept
-       method: POST
+       url: https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/pulse
+       method: PUT
        body_format: json
-       body: "{{lookup('file','eula1.json')}}"
+       body: "{{lookup('file','pulse.json')}}"
        user: admin
        password: zxm4=py25PVs:Aw
        force_basic_auth: yes
