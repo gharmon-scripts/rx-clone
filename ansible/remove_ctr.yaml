@@ -1,0 +1,13 @@
+- name: Basic Cluster Setup
+  hosts: startropics
+  become: no
+  gather_facts: no
+  vars:
+  roles:
+  tasks:
+    - name: Create Containers
+      shell: . /etc/profile; ncli ctr rm name="{{ item }}"
+      loop:
+        - ctr1
+        - ctr2
+        - ctr3

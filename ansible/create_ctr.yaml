@@ -1,0 +1,13 @@
+- name: Basic Cluster Setup
+  hosts: startropics
+  become: no
+  gather_facts: no
+  vars:
+  roles:
+  tasks:
+    - name: Create Containers
+      shell: . /etc/profile; ncli ctr create name="{{ item }}" sp-id=`ncli sp ls | grep Id | grep -v Disk | cut -f 4 -d :`
+      loop:
+        - ctr1
+        - ctr2
+        - ctr3

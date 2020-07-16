@@ -1,0 +1,35 @@
+{
+  name: 'Accept EULA',
+  description: 'Accept the EULA on the cluster',
+  requires: ['studentNumber', 'password'],
+  async runtime(state, handlers) {
+    handlers.debug.log('info', 'Accepting EULA in AAPM setup');
+    handlers.out.stdout('> Accepting EULA...');
+
+    try {
+      await handlers.rest.call(
+        'post',
+        `https://10.63.30.215:9440/PrismGateway/services/rest/v1/eulas/accept`,
+        state.values.username,
+        state.values.password,
+        {
+          data: {
+            username: 'Student',
+            companyName: 'Nutanix',
+            jobTitle: 'Student',
+          },
+        },
+      );
+    } catch (error) {
+      handlers.debug.log('info', 'Failed to accept EULA in AAPM setup', error);
+      handlers.out.stderr('> Failed to accept EULA');
+      handlers.out.stderr('> If you\'ve already manually accepted this, that is expected.');
+      return {};
+      // throw error;
+    }
+
+    handlers.debug.log('info', 'Successfully accepted EULA in AAPM setup');
+    handlers.out.stdout('> Successfully accepted EULA');
+    return {};
+  },
+}
