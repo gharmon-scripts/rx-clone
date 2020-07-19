@@ -1,0 +1,27 @@
+{
+ "resources": "{
+             "version":"'5.16.1.2'",
+             "should_auto_register": "false",
+             "pc_vm_list": "[
+              {
+                vm_name: 'PrismCentral',
+                container_uuid: state.values.container,
+                num_sockets: 8,
+                data_disk_size_bytes: 2684354560000,
+                memory_size_bytes: 34359738368,
+                "dns_server_ip_list": 10.63.25.40",
+                nic_list: [
+                  {
+                    ip_list: ,
+                    network_configuration: {
+                      network_uuid: state.values.network,
+                      subnet_mask: state.values.pcNetmask,
+                      default_gateway: state.values.pcGateway,
+                    },
+                  },
+                ],
+              },
+            ],
+          }",
+}        
+

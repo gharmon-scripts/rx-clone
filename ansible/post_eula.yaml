@@ -1,7 +1,7 @@
 - name: End User Aggreement
-  hosts: startropics
+  hosts: ncp
   become: no
-  gather_facts: no
+  gather_facts: yes
   vars:
   roles:
   tasks:
@@ -10,9 +10,9 @@
        url: https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v1/eulas/accept
        method: POST
        body_format: json
-       body: "{{lookup('file','eula1.json')}}"
+       body: "{{lookup('file','eula.json')}}"
        user: admin
-       password: zxm4=py25PVs:Aw
+       password: {{pwd}}
        force_basic_auth: yes
        return_content: yes
        validate_certs: no

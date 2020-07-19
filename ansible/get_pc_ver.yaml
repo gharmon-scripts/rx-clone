@@ -1,0 +1,24 @@
+- name: 
+  hosts:
+  become: no
+  gather_facts: no
+  vars:
+  roles:
+  tasks:
+    - name: Check for available PC version  
+      uri:
+        url: "https://{{hostvars[hostname]['ansible_host']}}:9440/PrismGateway/services/rest/v1/upgrade/prism_central_deploy/softwares"
+        user: admin
+        method: GET
+        password: "{{hostvars[hostname]['pwd']}}"
+        force_basic_auth: yes
+        validate_certs: no
+        register: output
+    - set_fact:
+        rdates: "{{output.json | json_query('entities[*].releaseDate') | max}}"
+    - debug:
+        msg: "{{rdates}}"
+    - set_fact:
+        pc_version: "{{output.json | json_query(query) | join(\"\") }}"
+      vars:
+        query: "entities[?releaseDate==`{{rdates}}`].version"  

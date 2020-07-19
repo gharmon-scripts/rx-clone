@@ -1,0 +1,45 @@
+- name:  Monitor PC Deployment Status
+  hosts: frog
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    #- name: Gather Info from Template
+    #  template:
+    #    src: pc-req.j2
+    #    dest: pc-req.yml
+    #- set_fact:
+    #    request: "{{lookup('file','pc-req.yml') | from_yaml | to_json}}"
+    #- debug:
+    #    msg: "{{request}}"
+    #- debug:
+    #    msg: "Prism Central is {{[pc]}}"
+    #- debug:
+    #    msg: "Prism Central verion is {{[pc_version]}}"
+    #- debug: 
+    #    msg: "The default container uuid is {{[ctr_uuid]}}"
+    #- debug:
+    #    msg: "The network uuid is {{[subnet_uuid]}}"
+    #- debug:
+    #    msg: "The cluster password is {{pwd}}" 
+    #- debug: 
+    #     msg: "{{pc}} and Nutanix/4u!"
+    - name: Task Progress 
+      block:
+        - name: Checking Deployment status
+          uri:
+            url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/382ff208-328b-48cc-9723-2ed40e7f11fb" 
+            method: GET
+            validate_certs: no
+            status_code: 200
+            user: "admin"
+            password: "{{ pwd }}"
+            force_basic_auth: yes
+          register: status
+          until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+          retries: 4
+          delay: 300
+
+    - debug:
+        msg: "Task completed with result: {{status.json.progress_status}}"

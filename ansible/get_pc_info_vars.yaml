@@ -1,0 +1,19 @@
+- name:  Gather Prism Central Information
+  hosts: frog
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - debug:
+        msg: "Prism Central is {{pc}}"
+    - debug:
+        msg: "Prism Central verion is {{pc_version}}"
+    - debug: 
+        msg: "The default container uuid is {{ctr_uuid}}"
+    - debug:
+        msg: "The network uuid is {{subnet_uuid}}"
+    - debug:
+        msg: "The subnet mask is {{ansible_default_ipv4.netmask}}"
+    - debug:
+        msg: "The default gateway is: {{ansible_default_ipv4.gateway}}"
