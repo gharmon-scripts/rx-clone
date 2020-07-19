@@ -8,7 +8,7 @@
     - name: Collecting Prism Central Information
       template:
         src: pc-req.j2
-        dest: pc-req.yml
+        dest: ~/tmp/pc-req.yml
     - set_fact:
         request: "{{lookup('file','pc-req.yml') | from_yaml | to_json}}"
     - debug: 

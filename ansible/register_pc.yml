@@ -1,0 +1,24 @@
+- name: Register Prism Central
+  hosts: frog
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Change Default Password
+      uri:
+        url: "https://{{pc}}:9440/PrismGateway/services/rest/v1/utils/change_default_system_password"
+        method: POST
+        body_format: json
+        validate_certs: no
+        user: "admin"
+        password: "Nutanix/4u"
+        body:
+          oldPassword: "Nutanix/4u"
+          newPassword: "{{pwd}}"
+        status_code: 200
+        force_basic_auth: yes 
+      register: output
+    - debug:
+        msg: "{{output}}"
+

@@ -1,13 +1,10 @@
 - name: Get Cluster Container for PC installation 
-  hosts: startropics
+  hosts: frog 
   become: no
   gather_facts: no 
   ignore_errors: yes
   vars:
-     ctr: ctr_pc
   roles: 
   tasks: 
-    - name: Creating Container for PC
-      shell: . /etc/profile; ncli ctr create name=ctr_pc sp-id=`ncli sp ls | grep Id | grep -v Disk | cut -f 4 -d :`
     - name: Get Container UUID
-      shell: . /etc/profile; ncli ctr ls name=ctr_pc | grep Uuid | grep -v Storage | cut -f2 -d:
+        shell: . /etc/profile; ncli ctr ls | grep Uuid | grep -v Storage | cut -f2 -d:
