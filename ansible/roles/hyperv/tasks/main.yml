@@ -1,0 +1,4 @@
+---
+# tasks file for roles/hyperv
+- include: post_eula.yml
+- include: put_pulse.yml

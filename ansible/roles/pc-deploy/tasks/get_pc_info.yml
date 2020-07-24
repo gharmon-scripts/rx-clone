@@ -1,0 +1,14 @@
+- set_fact:
+    request: "{{lookup('template','pc-req.j2') | from_yaml | to_json}}"
+
+- debug:
+    msg: "{{request}}"
+
+- debug:
+    msg: "Prism Central IP {{pc_ip}}"
+- debug:
+    msg: "Prism Central verion is {{pc_version}}"
+- debug:
+    msg: "The default container uuid is {{ctr_uuid}}"
+- debug:
+    msg: "The network uuid is {{subnet_uuid}}"

@@ -1,0 +1,11 @@
+- name: Downloading Prism Central to cluster
+  uri:
+    url:  "https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v3/prism_central"
+    method: POST
+    body_format: json
+    body: "{{request}}"
+    user: admin
+    password: "{{pwd}}" 
+    force_basic_auth: yes
+    return_content: yes
+    validate_certs: no

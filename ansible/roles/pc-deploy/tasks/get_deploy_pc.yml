@@ -1,0 +1,18 @@
+- name: checking PC Deploy Task Progress
+  block:
+    - name: Checking Deployment status
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/{{task_uuid}}"
+        method: GET
+        validate_certs: no
+        status_code: 200
+        user: "admin"
+        password: "{{ pwd }}"
+        force_basic_auth: yes
+      register: status
+      until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+      retries: 4
+      delay: 300
+
+- debug:
+     msg: "Task completed with result: {{status.json.progress_status}}"

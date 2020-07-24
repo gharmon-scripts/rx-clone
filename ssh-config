@@ -1,0 +1,77 @@
+Host starfox
+   Hostname 10.63.18.115
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host starfox_pc
+   Hostname 10.63.19.114
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host jaws
+   Hostname 10.63.30.140
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host jaws_pc
+   Hostname 10.63.3.139
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host punchout
+   Hostname 10.63.18.120
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host punchout_pc
+   Hostname 10.63.19.119
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host startropics
+   Hostname 10.63.30.211
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host startropics_pc
+   Hostname 10.63.31.214
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host f-zero
+   Hostname 10.63.30.50
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host f-zero_pc
+   Hostname 10.63.31.50
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host marblemadness
+   Hostname 10.63.30.75
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host marblemadness_pc
+   Hostname 10.63.31.74
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host renegade
+   Hostname 10.63.30.95
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host doubledragon
+   Hostname 10.63.30.200
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host dokidoki
+   Hostname 10.63.30.220
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host frog
+   Hostname 10.63.18.61
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host frog_pc
+   Hostname 10.63.19.64
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host megaman
+   Hostname 10.63.30.145
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+Host megaman_pc
+   Hostname 10.63.31.144
+   User nutanix
+   IdentityFile ~/.ssh/id_rsa
+

@@ -1,0 +1,62 @@
+- name: Deploy Prism Central
+  hosts: startropics
+  become: no
+  gather_facts: yes 
+  vars:
+  roles:
+  tasks:
+    - name: Collecting Prism Central Information
+      template:
+        src: pc-req.j2
+        dest: ~/tmp/pc-req.yml
+    - set_fact:
+        request: "{{lookup('file','pc-req.yml') | from_yaml | to_json}}"
+    - debug: 
+        msg: "{{request}}"
+    - debug:
+        msg: "Prism Central is {{pc}}"
+    - debug:
+        msg: "Prism Central verion is {{pc_version}}"
+    - debug:
+        msg: "The default container uuid is {{ctr_uuid}}"
+    - debug:
+        msg: "The network uuid is {{subnet_uuid}}"
+    - name: Start PC VM deployment
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v3/prism_central"
+        method: POST
+        validate_certs: no
+        user: "admin"
+        password: "{{pwd}}"
+        body_format: json
+        body: "{{request}}"
+        force_basic_auth: yes
+        status_code: 202
+      register: output
+    - debug:
+       msg: "Deploy task is {{output.json.task_uuid}}"
+    - set_fact:
+       task_uuid: "{{output.json.task_uuid}}"
+    - set_fact:
+       monitor_ip: "{{ansible_default_ipv4.address}}"
+    - set_fact:
+       monitor_pwd: "{{pwd}}"
+    - name: Task Progress
+      block:
+        - name: Checking Deployment status
+          uri:
+            url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/{{task_uuid}}"
+            method: GET
+            validate_certs: no
+            status_code: 200
+            user: "admin"
+            password: "{{ pwd }}"
+            force_basic_auth: yes
+          register: status
+          until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+          retries: 4
+          delay: 300
+
+    - debug:
+        msg: "Task completed with result: {{status.json.progress_status}}"
+

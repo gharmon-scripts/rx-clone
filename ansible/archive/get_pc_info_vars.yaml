@@ -6,7 +6,7 @@
   roles:
   tasks:
     - debug:
-        msg: "Prism Central is {{pc}}"
+        msg: "Prism Central IP is {{pc_ip}}"
     - debug:
         msg: "Prism Central verion is {{pc_version}}"
     - debug: 

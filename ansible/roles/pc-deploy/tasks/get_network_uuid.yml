@@ -1,0 +1,15 @@
+- name: Gathering Default Container UUID
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v2.0/networks"
+    user: admin 
+    method: GET
+    password: "{{pwd}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: output
+
+- set_fact:
+    subnet_uuid: "{{item}}"
+  with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+  vars:
+    query: "entities[?contains(name, 'MGMT')].uuid"

@@ -1,5 +1,5 @@
 - name: Basic Cluster Setup
-  hosts: ncp 
+  hosts: setup
   become: no
   gather_facts: yes 
   vars:
@@ -7,27 +7,27 @@
   tasks:
     - name: Set EULA
       uri:
-       url: https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v1/eulas/accept
-       method: POST
-       body_format: json
-       body: "{{lookup('file','eula.json')}}"
-       user: admin
-       password:{{pwd}}
-       force_basic_auth: yes
-       return_content: yes
-       validate_certs: no
+        url: https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v1/eulas/accept
+        method: POST
+        body_format: json
+        body: "{{lookup('file','eula.json')}}"
+        user: admin
+        password: "{{pwd}}" 
+        force_basic_auth: yes
+        return_content: yes
+        validate_certs: no
 
     - name: Disabling Pulse
       uri:
-       url: https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/pulse
-       method: PUT
-       body_format: json
-       body: "{{lookup('file','pulse.json')}}"
-       user: admin
-       password:{{pwd}}
-       force_basic_auth: yes
-       return_content: yes
-       validate_certs: no 
+        url: https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/pulse
+        method: PUT
+        body_format: json
+        body: "{{lookup('file','pulse.json')}}"
+        user: admin
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        return_content: yes
+        validate_certs: no 
 
     - name: Create Containers
       shell: . /etc/profile; ncli ctr create name="{{ item }}" sp-id=`ncli sp ls | grep Id | grep -v Disk | cut -f 4 -d :`

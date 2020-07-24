@@ -1,5 +1,5 @@
 - name: Disable Pulse
-  hosts: ncp
+  hosts: f-zero
   become: no
   gather_facts: yes 
   vars:
@@ -12,7 +12,7 @@
        body_format: json
        body: "{{lookup('file','pulse.json')}}"
        user: admin
-       password: zxm4=py25PVs:Aw
+       password: "{{pwd}}" 
        force_basic_auth: yes
        return_content: yes
        validate_certs: no

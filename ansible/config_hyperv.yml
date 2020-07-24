@@ -1,18 +1,16 @@
 ---
-- name: Deploying Prism Central 
-  hosts: setup
+- name: Configuring Basic Cluster Setup
+  hosts: setup_hyperv
   become: no
   gather_facts: yes
   vars:
-    pwd: "SREs4eva!"
-    task_uuid: "fbb7b9ab-8f49-4dbf-9981-e3eff72f14fe"
+    pwd: "zxm4=py25PVs:Aw"
   pre_tasks:
     - debug:
         msg: 'Staring Configration'
 
   roles:
-    - pc-deploy 
-
+    - hyperv
   post_tasks:
     - debug:
         msg: 'Cluster configuration Complete'

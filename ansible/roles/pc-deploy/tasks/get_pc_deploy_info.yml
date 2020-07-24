@@ -1,0 +1,17 @@
+- name: Gather Info from Template
+  template:
+     src: pc-req.j2
+     dest: ~/tmp/pc-req.yml.facts
+- name: Loading local facts
+  setup: filter=ansible_local fact_path=~/tmp
+
+- debug
+    msg: "Prism Central IP is {{pc_ip}}"
+- debug:
+    msg: "Prism Central verion is {{pc_version}}"
+- debug:
+    msg: "The default container uuid is {{ctr_uuid}}"
+- debug:
+    msg: "The network uuid is {{subnet_uuid}}"
+- debug:
+    msg: "The cluster password is {{pwd}}"

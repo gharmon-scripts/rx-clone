@@ -1,0 +1,9 @@
+- name: Creating MGMT Network (VLAN 0)
+  shell: . /etc/profile; acli net.create MGMT vlan=0
+
+- name: Creating DHCP Network (VLAN 102)
+  shell: . /etc/profile; acli net.create DHCP vlan=102
+
+- name: Creating STATIC Network (VLAN 103)
+  shell: . /etc/profile; acli net.create STATIC vlan=103
+

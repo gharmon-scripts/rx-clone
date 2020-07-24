@@ -1,0 +1,7 @@
+---
+# tasks file for roles/ahv
+- include: post_eula.yml
+- include: put_pulse.yml
+- include: create_ctrs.yml
+- include: create_networks.yml
+- include: upload_isos.yml

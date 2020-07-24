@@ -1,0 +1,46 @@
+- name:  Gather Prism Central Information
+  hosts: startropics
+  become: no
+  gather_facts: yes
+  vars:
+     subnet_uuid: "343fde74-75a5-4191-b4c9-82bde7c07918"
+  roles:
+  tasks:
+    - name: Gathering Default Container UUID
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/containers"
+        user: admin
+        method: GET
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+      register: output
+
+    - set_fact:
+        ctr_uuid: "{{item}}"
+      with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+      vars:
+         query: "entities[?contains(name, 'default-container')].containerUuid"
+      when: output.json.metadata.totalEntities > 0
+
+    - name: Gather Info from Template
+      template:
+        src: pc-req.j2
+        dest: ~/tmp/pc-req.yml.facts
+    #- set_fact:
+    #    request: "{{lookup('file','pc-req.yml') | from_yaml | to_json}}"
+
+    - name: Loading local facts
+      setup: filter=ansible_local fact_path=~/tmp
+    #- debug:
+    #    msg: "{{request}}"
+    - debug:
+        msg: "Prism Central IP is {{pc_ip}}"
+    - debug:
+        msg: "Prism Central verion is {{pc_version}}"
+    - debug: 
+        msg: "The default container uuid is {{ctr_uuid}}"
+    - debug:
+        msg: "The network uuid is {{subnet_uuid}}"
+    - debug:
+        msg: "The cluster password is {{pwd}}" 

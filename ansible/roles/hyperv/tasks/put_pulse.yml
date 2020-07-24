@@ -1,0 +1,11 @@
+- name: Disabling Pulse
+  uri:
+    url: https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/pulse
+    method: PUT
+    body_format: json
+    body: "{{lookup('file','pulse.json')}}"
+    user: admin
+    password: "{{pwd}}" 
+    force_basic_auth: yes
+    return_content: yes
+    validate_certs: no

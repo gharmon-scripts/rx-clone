@@ -1,0 +1,8 @@
+---
+# tasks file for roles/pc-deploy
+- include: get_default_ctr_uuid.yml
+- include: get_network_uuid.yml
+- include: get_pc_info.yml
+- include: download_pc.yml
+#- include: deploy_pc.yml
+#- include: get_deploy_pc.yml

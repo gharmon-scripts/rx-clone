@@ -1,5 +1,5 @@
 - name: Creating Networks 
-  hosts: ncp
+  hosts: startropics
   become: no
   gather_facts: no
   vars:
