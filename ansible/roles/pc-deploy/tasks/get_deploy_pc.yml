@@ -11,7 +11,7 @@
         force_basic_auth: yes
       register: status
       until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
-      retries: 4
+      retries: 12 
       delay: 300
 
 - debug:

@@ -4,8 +4,6 @@
   become: no
   gather_facts: yes
   vars:
-    pwd: "SREs4eva!"
-    task_uuid: "fbb7b9ab-8f49-4dbf-9981-e3eff72f14fe"
   pre_tasks:
     - debug:
         msg: 'Staring Configration'
