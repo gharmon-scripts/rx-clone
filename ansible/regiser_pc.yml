@@ -1,5 +1,5 @@
 ---
-- name: Configuring Basic Cluster Setup
+- name: Deploying Prism Central 
   hosts: setup
   become: no
   gather_facts: yes
@@ -9,7 +9,7 @@
         msg: 'Staring Configration'
 
   roles:
-    - ahv
+    - pc-register 
 
   post_tasks:
     - debug:

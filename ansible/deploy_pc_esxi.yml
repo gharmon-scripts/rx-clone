@@ -1,6 +1,6 @@
 ---
-- name: Configuring Basic Cluster Setup
-  hosts: setup
+- name: Deploying Prism Central 
+  hosts: setup_esxi
   become: no
   gather_facts: yes
   vars:
@@ -9,7 +9,7 @@
         msg: 'Staring Configration'
 
   roles:
-    - ahv
+    - pc-deploy-esxi 
 
   post_tasks:
     - debug:

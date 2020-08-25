@@ -1,5 +1,5 @@
-- name: End User Aggreement
-  hosts: f-zero
+- name: End User Agreement
+  hosts: renegade_pc
   become: no
   gather_facts: yes
   vars:

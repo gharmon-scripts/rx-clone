@@ -1,5 +1,5 @@
 - name: Disable Pulse
-  hosts: f-zero
+  hosts: renegade_pc 
   become: no
   gather_facts: yes 
   vars:

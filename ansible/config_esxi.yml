@@ -1,6 +1,6 @@
 ---
 - name: Configuring Basic Cluster Setup
-  hosts: setup
+  hosts: setup_esxi
   become: no
   gather_facts: yes
   vars:
@@ -9,8 +9,7 @@
         msg: 'Staring Configration'
 
   roles:
-    - ahv
-
+    - esxi 
   post_tasks:
     - debug:
         msg: 'Cluster configuration Complete'
