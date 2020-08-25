@@ -1,0 +1,3 @@
+---
+# vars file for roles/afs-deploy
+afs_version: 3.6.5

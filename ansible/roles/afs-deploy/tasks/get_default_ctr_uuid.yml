@@ -1,0 +1,19 @@
+- name: Gathering Default Container UUID
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/containers"
+    user: admin 
+    method: GET
+    password: "{{pwd}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: output
+
+- set_fact:
+     ctr_uuid: "{{item}}"
+  with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+  vars:
+     query: "entities[?contains(name, 'default-container')].containerUuid"
+  when: output.json.metadata.totalEntities > 0
+
+- debug: 
+   msg: "The default container uuid is {{ctr_uuid}}" 
