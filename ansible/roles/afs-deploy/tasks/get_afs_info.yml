@@ -1,0 +1,10 @@
+- set_fact:
+    request: "{{lookup('template','afs-req2.j2') | from_yaml | to_json}}"
+
+- debug:
+    msg: "{{request}}"
+
+- debug:
+    msg: "AFS Server name will be {{afs_name}}"
+- debug:
+    msg: "The network uuid is {{subnet_uuid}}"

@@ -1,0 +1,21 @@
+- name: Deploying Nutanix Files to Cluster
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/"
+    method: POST
+    validate_certs: no
+    user: "admin"
+    password: "{{pwd}}"
+    body_format: json
+    body: "{{request}}" 
+    force_basic_auth: yes
+    status_code: 200
+    return_content: yes
+  register: output
+- debug:
+    msg: "Deploy task is {{output.json.taskUuid}}"
+- set_fact:
+    task_uuid: "{{output.json.taskUuid}}"
+- set_fact:
+    monitor_ip: "{{ansible_default_ipv4.address}}"
+- set_fact:
+    monitor_pwd: "{{pwd}}"

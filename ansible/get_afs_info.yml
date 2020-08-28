@@ -1,0 +1,9 @@
+---
+- name: Collect AFS Information 
+  hosts: octopath
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+    - afs-deploy 
+  tasks:

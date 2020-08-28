@@ -1,0 +1,23 @@
+{
+ "name":"octpath-fs",
+ "dnsDomainName":"dur.sre-labs.nutanix.com",
+ "sizeGib":"1024",
+ "internalNetwork":
+    {"subnetMask":"255.255.254.0",
+     "defaultGateway":"10.63.36.1",
+     "uuid":"8ec5151c-331e-4f0f-9e17-753ef282ff9d",
+     "pool":["10.63.36.249 10.63.36.252"]
+    },
+ "externalNetworks":
+    [{
+      "subnetMask":"255.255.254.0",
+      "defaultGateway":"10.63.36.1",
+      "uuid":"8ec5151c-331e-4f0f-9e17-753ef282ff9d",
+      "pool":["10.63.36.253 10.63.36.255"]
+    }],
+ "dnsServerIpAddresses":["10.63.25.40"],
+ "ntpServers":["10.63.25.20"],
+ "windowsAdDomainName":"dur.sre-labs.nutanix.com",
+ "windowsAdUsername":"Administrator",
+ "windowsAdPassword":"Nutanix/4u!"
+}

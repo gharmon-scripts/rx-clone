@@ -1,0 +1,3 @@
+#!/bin/bash
+ssh $1 '. /etc/profile; 
+ncli fs create name=sed-fs dns-domain-name=sed-fs.dur.sre-labs.nutanix.com dns-server-ip-address-list=10.63.25.40 ntp-servers=10.63.25.20 size-gib=1024 ad-protocol-type=SMB windows-ad-domain-name=dur.sre-labs.nutanix.com windows-ad-username=ntnx1 windows-ad-password=SREs4eva! overwrite=true internal-virtual-network=8ec5151c-331e-4f0f-9e17-753ef282ff9d internal-virtual-network-gateway=10.63.36.1 internal-virtual-network-mask=255.255.254.0 internal-virtual-network-ips="10.63.36.249-10.63.36.252" external-virtual-network=8ec5151c-331e-4f0f-9e17-753ef282ff9d external-virtual-network-gateway=10.63.36.1 external-virtual-network-mask=255.255.254.0 external-virtual-network-ips="10.63.36.253-10.63.36.255"'

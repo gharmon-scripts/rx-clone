@@ -1,0 +1,23 @@
+----
+   name {{afs_name}}
+   dnsDomainName {{afs_domain}}
+   sizeGib 1024
+   internalNetwork 
+      subnetMask  255.255.254.0
+      defaultGateway  10.63.36.1
+      uuid  {{subnet_uuid}}
+      pool 
+      - 10.63.36.249 10.63.36.252
+   externalNetwork 
+      subnetMask  255.255.254.0
+      defaultGateway  10.63.36.1
+      uuid  {{subnet_uuid}}
+      pool 
+      - 10.63.36.243 10.63.36.255
+   dnsServerIpAddress  
+   - {{afs_dns}}
+   ntpServers 
+   - {{afs_ntp}} 
+   windowsAdDomainName  {{afs_domain}}
+   windowsAdDomainName  {{afs_admin}}
+   windowsAdDomainName  {{afs_admin_pwd}} 

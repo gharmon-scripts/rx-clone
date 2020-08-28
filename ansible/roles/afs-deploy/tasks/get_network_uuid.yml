@@ -12,4 +12,4 @@
     subnet_uuid: "{{item}}"
   with_items: "{{output.json | to_json | from_json |json_query(query) }}"
   vars:
-    query: "entities[?contains(name, 'MGMT')].uuid"
+    query: "entities[?contains(name, 'STATIC')].uuid"

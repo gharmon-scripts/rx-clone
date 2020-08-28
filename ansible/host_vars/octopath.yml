@@ -1,0 +1,9 @@
+---
+"pc_ip": "10.63.31.40"
+"afs_name": "octopath-fs"
+"afs_domain": "dur.sre-labs.nutanix.com"
+"afs_admin": "swhite"
+"afs_dns": "10.63.25.40"
+"afs_ntp": "10.63.24.20"
+"afs_admin_pwd": "changeme"
+"subnet_uuid": "8ec5151c-331e-4f0f-9e17-753ef282ff9d"
