@@ -1,5 +1,5 @@
 - name: Complete Prism Central Configiratiokn
-  hosts: renegade_pc
+  hosts: breathoffire_pc
   become: no
   gather_facts: yes 
   vars:

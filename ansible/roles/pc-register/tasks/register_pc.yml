@@ -10,6 +10,7 @@
       ipAddresses: "{{pc_ip}}"
       username: admin
       password: "{{pwd}}"
+      port: null
     force_basic_auth: yes
     status_code: 200
   register: output
