@@ -1,0 +1,9 @@
+---
+- name: Deploying Nutanix Files
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+    - afs-deploy 
+  tasks:

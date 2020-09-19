@@ -1,0 +1,21 @@
+- name: Get Files Server UUID
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/?filterCriteria=name&searchString={{afs_name}}&projection=BASIC_INFO"
+    user: admin
+    method: GET
+    password: "{{pwd}}"
+    force_basic_auth: yes
+    validate_certs: no
+  register: output
+- set_fact:
+    afs_uuid: "{{item}}"
+  with_items: "{{output.json | to_json | from_json | json_query(query)}}"
+  vars:
+     query: "entities[*].uuid"
+- set_fact:
+    request: "{{lookup('template','afs-join.j2') | from_yaml | to_json}}"
+- debug:
+    msg: "{{afs_uuid}}"
+- debug:
+    msg: "{{request}}"
+

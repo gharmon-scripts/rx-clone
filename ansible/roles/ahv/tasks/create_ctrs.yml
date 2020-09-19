@@ -3,5 +3,6 @@
   loop:
      - ctr1
      - ctr2
-     - ctr3
-
+     - DR
+     - Images
+     - VGs

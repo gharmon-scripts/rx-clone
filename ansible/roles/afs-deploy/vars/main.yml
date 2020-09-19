@@ -1,3 +1,8 @@
 ---
 # vars file for roles/afs-deploy
 afs_version: 3.6.5
+"afs_domain": "dur.sre-labs.nutanix.com"
+"afs_admin": "administrator"
+"afs_dns": "10.63.25.40"
+"afs_ntp": "10.63.25.20"
+"afs_admin_pwd": "SREs4eva!"

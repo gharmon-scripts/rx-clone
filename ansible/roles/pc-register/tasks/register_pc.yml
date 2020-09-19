@@ -7,7 +7,7 @@
     password: "{{pwd}}"
     body_format: json
     body: 
-      ipAddresses: "{{pc_ip}}"
+      ipAddresses: ["{{pc_ip}}"]
       username: admin
       password: "{{pwd}}"
       port: null

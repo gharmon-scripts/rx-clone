@@ -1,0 +1,11 @@
+- name: Join Learn Domain
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/{{afs_uuid}}/joinDomain"
+    user: admin
+    method: POST
+    password: "{{pwd}}"
+    body_format: json
+    body: "{{request}}"
+    force_basic_auth: yes
+    status_code: 200
+    validate_certs: no

@@ -2,5 +2,7 @@
 # tasks file for roles/afs-deploy
 - include: get_network_uuid.yml
 - include: get_afs_info.yml
-- include: deploy_afs.yml
-- include: get_deploy_afs.yml
+#- include: deploy_afs.yml
+#- include: get_deploy_afs.yml
+- include: get_afs_uuid.yml
+- include: join_afs_domain.yml

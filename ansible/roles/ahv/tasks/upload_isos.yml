@@ -12,3 +12,6 @@
 
 - name: Uploading Ubuntu 17.10.1
   shell: . /etc/profile; acli image.create Ubuntu17 container=Images image_type=kIsoImage source_url=http://10.63.25.20/Repo/Mounts/OS/Linux/ubuntu-18.04.3-desktop-amd64.iso
+
+- name: Uploading VirtIO Drivers 
+  shell: . /etc/profile; acli image.create VirtIO container=Images image_type=kIsoImage source_url=http://10.63.25.20/Repo/Mounts/Drivers/VirtIO/Nutanix-VirtIO-1.1.3.iso

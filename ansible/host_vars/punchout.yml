@@ -1,8 +1,8 @@
 ---
-"pc_ip": "10.63.31.40"
-"afs_name": "octopath-fs"
+"pc_ip": "10.63.19.120"
+"afs_name": "punchout-fs"
 "afs_domain": "dur.sre-labs.nutanix.com"
-"afs_admin": "swhite"
+"afs_admin": "administrator"
 "afs_dns": "10.63.25.40"
 "afs_ntp": "10.63.24.20"
 "afs_admin_pwd": "SREs4eva!"

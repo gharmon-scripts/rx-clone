@@ -1,0 +1,128 @@
+- name: Cluster Volume Group
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Creating volume group
+      shell: . /etc/profile; ncli volume-group create description=ClusterVolumgroup name="{{vg_name}}" 
+    
+    - name: Get volume group uuid
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/"
+        user: admin
+        method: GET
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+      register: output
+
+    - set_fact:
+        vg_uuid: "{{item}}"
+      with_items: "{{output.json | to_json | from_json | json_query(query)}}"
+      vars:
+        query: "entities[*].uuid"
+    - debug:
+        msg: "Volume Group uuid is {{vg_uuid}}"
+    
+    - name: Gathering Default Container UUID
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/containers"
+        user: admin
+        method: GET
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+      register: output
+
+    - set_fact:
+        ctr_uuid: "{{item}}"
+      with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+      vars:
+        query: "entities[?contains(name, 'VGs')].containerUuid"
+      when: output.json.metadata.totalEntities > 0
+
+    - debug:
+        msg: "The default container uuid is {{ctr_uuid}}"
+
+    - name: Adding 1st disk to volume group
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/{{vg_uuid}}/disks"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body: 
+            {"create_config": {
+                   "size": 107374182400,
+                   "storage_container_uuid": "{{ctr_uuid}}"},
+             "volume_group_uuid": "{{vg_uuid}}" }
+        status_code: 201
+   
+    - name: Adding 2nd disk to volume group
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/{{vg_uuid}}/disks"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body:
+            {"create_config": {
+                   "size": 107374182400,
+                   "storage_container_uuid": "{{ctr_uuid}}"},
+             "volume_group_uuid": "{{vg_uuid}}" }
+        status_code: 201
+
+    - name: Adding 3rd disk to volume group
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/{{vg_uuid}}/disks"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body:
+            {"create_config": {
+                   "size": 107374182400,
+                   "storage_container_uuid": "{{ctr_uuid}}"},
+             "volume_group_uuid": "{{vg_uuid}}" }
+        status_code: 201
+
+    - name: Adding 4th disk to volume group
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/{{vg_uuid}}/disks"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body:
+            {"create_config": {
+                   "size": 107374182400,
+                   "storage_container_uuid": "{{ctr_uuid}}"},
+             "volume_group_uuid": "{{vg_uuid}}" }
+        status_code: 201
+
+    - name: Adding 5th disk to volume group
+      uri:
+        url: "https://10.63.30.105:9440/PrismGateway/services/rest/v2.0/volume_groups/{{vg_uuid}}/disks"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        body:
+            {"create_config": {
+                   "size": 107374182400,
+                   "storage_container_uuid": "{{ctr_uuid}}"},
+             "volume_group_uuid": "{{vg_uuid}}" }
+        status_code: 201
+

@@ -1,0 +1,9 @@
+- name: Updating Prism Central Setting 
+  hosts: sw_pc_setup 
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Updating Prism Central Password
+      shell: . /etc/profile; ncli user reset-password user-name=admin password="{{pwd}}"
