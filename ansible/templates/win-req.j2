@@ -1,0 +1,62 @@
+---
+name: win_vm1
+memory_mb: 4096
+num_vcpus: 2
+description: Windows Server Core
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: ec3c73c3-ebcb-46e4-90a3-08fbfdde4491
+    minimum_size: 42949672960
+vm_nics:
+- network_uuid: {{subnet_uuid}}
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+  userdata: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <unattend xmlns="urn:schemas-microsoft-com:unattend">
+       <settings pass="oobeSystem">
+          <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+             <UserAccounts>
+                <AdministratorPassword>
+                   <Value>nutanix/4u</Value>
+                   <PlainText>true</PlainText>
+                </AdministratorPassword>
+             </UserAccounts>
+             <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <SkipMachineOOBE>true</SkipMachineOOBE>
+             </OOBE>
+          </component>
+          <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
+             <InputLocale>en-US</InputLocale>
+             <SystemLocale>en-US</SystemLocale>
+             <UILanguageFallback>en-us</UILanguageFallback>
+             <UILanguage>en-US</UILanguage>
+             <UserLocale>en-US</UserLocale>
+          </component>
+      <component name="Networking-MPSSVC-Svc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                <DomainProfile_EnableFirewall>false</DomainProfile_EnableFirewall>
+                <PrivateProfile_EnableFirewall>false</PrivateProfile_EnableFirewall>
+                <PublicProfile_EnableFirewall>false</PublicProfile_EnableFirewall>
+            </component>
+       </settings>
+    </unattend>
+  files_to_inject_list: []
+vm_features:
+  AGENT_VM: false

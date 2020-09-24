@@ -1,9 +1,11 @@
 ---
 - name: Deploying Prism Central 
-  hosts: setup
+  hosts: renegade
   become: no
   gather_facts: yes
   vars:
+  vars_prompt: 
+      
   pre_tasks:
     - debug:
         msg: 'Staring Configration'

@@ -4,7 +4,7 @@
   become: no
   gather_facts: yes
   vars:
-    pwd: "zxm4=py25PVs:Aw"
+  vars_prompt:
   pre_tasks:
     - debug:
         msg: 'Staring Configration'

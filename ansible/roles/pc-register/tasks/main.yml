@@ -1,4 +1,4 @@
 ---
 # tasks file for roles/pc-deploy
 - include: register_pc.yml
-- include: get_deploy_pc.yml
+#- include: get_deploy_pc.yml

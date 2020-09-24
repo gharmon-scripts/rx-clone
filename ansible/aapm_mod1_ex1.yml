@@ -1,0 +1,15 @@
+- name: Exploring the Default AHV Network Configuration
+  hosts: simcity
+  become: no
+  gather_facts: yes
+  vars:
+  vars_prompt:
+    - name: pwd
+      prompt: "Please Enter Prism Password"
+  roles:
+  tasks: 
+    - name: Show Currentily Configured Bridges
+      shell: . /etc/profile; manage_ovs show_bridges
+      register: output
+    - debug:
+        msg: "{{output}}" 

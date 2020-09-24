@@ -1,10 +1,13 @@
 - name: Complete Prism Central Configiratiokn
-  hosts: sw_pc_setup 
+  hosts: renegade_pc 
   become: no
   gather_facts: yes 
   vars:
+  vars_prompt:
   roles:
   tasks:
+    - name: Changing Prism Central Password
+      shell: . /etc/profile; ncli user reset-password user-name=admin password={{pwd}}
     - name: Post EULA
       uri:
        url: https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v1/eulas/accept

@@ -4,6 +4,9 @@
   become: no
   gather_facts: yes
   vars:
+  vars_prompt:
+    - name: pwd
+      prompt: "Please Enter Prism Password"
   roles:
     - afs-deploy 
   tasks:

@@ -4,6 +4,12 @@
   become: no
   gather_facts: yes
   vars:
+  vars_prompt:
+    - name: pc_ip
+      prompt: Please Enter Prism Central IP Address
+      private: no
+    - name: pc_pwd
+      prompt: Please Enter Prism Central Password
   pre_tasks:
     - debug:
         msg: 'Staring Configration'
