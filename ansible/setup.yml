@@ -1,4 +1,15 @@
 [setup]
-#renegade
-magicaldrop
+#castlevania pwd=nx2Tech075!
+mariokart
+[setup:vars]
+pwd=nx2Tech929!
+
+[setup_pc]
+mariokart_pc
+[setup_pc:vars]
+pc_pwd=nx2Tech929!
+
+[all:vars]
+pwd=nx2Tech929!
+pc_pwd=nx2Tech929!
 

@@ -1,31 +1,63 @@
 Role Name
 =========
-
-A brief description of the role goes here.
+This role will deploy Nutanix Prism Central to a Nutanix AHV Cluster
 
 Requirements
 ------------
+AHV Cluster needs to have access to Nutanix Support Portal for Software Downloads
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 Role Variables
 --------------
+./vars/main.yml
+pc_version: <enter version>
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
 Dependencies
 ------------
+./templates/pc-req.j2
+---
+resources:
+   version: {{pc_version}}
+   should_auto_register: false
+   pc_vm_list:
+   - vm_name: PrismCentral
+     container_uuid:  {{ctr_uuid}}
+     num_sockets: 4
+     data_disk_size_bytes: 536870912000
+     memory_size_bytes: 25769803776
+     dns_server_ip_list:
+     - {{ansible_dns.nameservers}}
+     nic_list:
+     - ip_list:
+       - {{pc_ip}}
+       network_configuration:
+         network_uuid: {{subnet_uuid}}
+         subnet_mask: {{ansible_default_ipv4.netmask}}
+         default_gateway: {{ansible_default_ipv4.gateway}}
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
 Example Playbook
 ----------------
+---
+- name: Deploying Prism Central
+  hosts: 
+  become: no
+  gather_facts: yes
+  vars:
+  vars_prompt:
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+  pre_tasks:
+    - debug:
+        msg: 'Staring Configuration'
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+  roles:
+    - pc-deploy
+
+  post_tasks:
+    - debug:
+        msg: 'Cluster configuration Complete'
+
 
 License
 -------

@@ -3,9 +3,8 @@
   become: no
   gather_facts: yes
   vars:
+    vmdisk_uuid: "23f72a9f-ca05-4b80-a674-b64f06eaa9ec"
   vars_prompt:
-    - name: pwd
-      prompt: "Please Enter Prism Password" 
   roles:
   tasks:
     - name: Get VM Container UUID 

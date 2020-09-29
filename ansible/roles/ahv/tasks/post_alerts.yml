@@ -1,0 +1,11 @@
+---
+- name: Clear Alerts
+  uri:
+    url: https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/alerts/resolve
+    method: POST
+    user: admin
+    password: "{{pwd}}"
+    force_basic_auth: yes
+    return_content: yes
+    validate_certs: no
+    status_code: 201

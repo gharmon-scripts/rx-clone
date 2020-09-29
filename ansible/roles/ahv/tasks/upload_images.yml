@@ -1,0 +1,9 @@
+- name: Uploading CentOS 8 Image
+  shell: . /etc/profile; acli image.create CentOS8 container=Images image_type=kDiskImage source_url=https://cloud.centos.org/centos/8/x86_64/images/CentOS-8-GenericCloud-8.2.2004-20200611.2.x86_64.qcow2
+
+- name: Uploading Windows Server 2016 Core
+  shell: . /etc/profile;acli image.create W2K16_Core container=Images image_type=kDiskImage source_url=http://10.63.25.20/Repo/Mounts/Training/SRE-Training/win_2k16_core.qcow2
+
+- name: Uploading Windows Server 2016 GUI
+  shell: . /etc/profile;acli image.create W2K16_GUI container=Images image_type=kDiskImage source_url=http://10.63.25.20/Repo/Mounts/Training/SRE-Training/win_2k16_gui.qcow2
+
