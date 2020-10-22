@@ -1,0 +1,20 @@
+---
+domainDescriptor:
+  domainName: {{afs_domain}} 
+  nameServer: 10.63.25.40
+  ouPath: ou=clusters,ou=swhite,dc=dur,dc=sre-labs,dc=nutanix,dc=com
+credential:
+  logonName: dur\administrator
+  password: {{afs_admin_pwd}}
+nosClusterDescriptor:
+  clusterName: {{cluster_name}}
+  virtualIp: 10.63.30.95
+nodeDescriptors:
+- nodeId: {{cluster_uuid}}::6
+  name: {{cluster_name}}-1
+- nodeId: {{cluster_uuid}}::7
+  name: {{cluster_name}}-2
+- nodeId: {{cluster_uuid}}::8
+  name: {{cluster_name}}-3
+- nodeId: {{cluster_uuid}}::9
+  name: {{cluster_name}}-4

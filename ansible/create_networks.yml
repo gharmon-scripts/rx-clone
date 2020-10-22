@@ -1,0 +1,9 @@
+- name: Creating Managed Network for OSS 
+  hosts: setup 
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Creating IPAM Network
+      shell: . /etc/profile; acli net.create IPAM vlan=101 ip_config=10.63.21.1/24; acli net.add_dhcp_pool IPAM start={{oss_start}} end={{oss_end}}; acli net.update_dhcp_dns IPAM server=10.63.25.40 domains={{afs_domain}};

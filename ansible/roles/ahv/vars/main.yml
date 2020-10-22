@@ -1,2 +1,4 @@
 ---
 # vars file for roles/ahv
+pc_ver: pc.2020.9
+afs_ver: 3.7.1

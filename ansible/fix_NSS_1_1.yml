@@ -1,0 +1,32 @@
+- name: Applying Break 1.1
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Setting host to maintenance mode
+      shell: . /etc/profile; acli host.exit_maintenance_mode {{host1}}
+      register: output
+    - debug:
+        msg: "{{output}}"
+    - name: Setting Number of Host Failures to tolerate
+      shell: . /etc/profile; acli ha.update num_host_failures_to_tolerate=0
+      register: output
+    - debug:
+        msg: "{{output}}"
+    - name: Setting HA reservation type
+      shell: . /etc/profile; acli ha.update reservation_type=kAcropolisHAReserveSegments 
+      register: output
+    - debug: 
+        msg: "{{output}}"
+    - name: Get Cluster Host Status
+      shell: . /etc/profile; acli host.list
+      register: output
+    - debug:
+        msg: "{{output}}"
+    - name: Get Cluster HA Status
+      shell: . /etc/profile; acli ha.get
+      register: output
+    - debug:
+        msg: "{{output}}"

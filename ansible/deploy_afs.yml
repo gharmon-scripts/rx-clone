@@ -5,8 +5,9 @@
   gather_facts: yes
   vars:
   vars_prompt:
-    - name: pwd
-      prompt: "Please Enter Prism Password"
+    - name: external_pool 
+      prompt: "Please enter the IP Address Range (3 IPs) for the External Network resvered from Eevee.SRE-Labs.Nutanix.com"
+      private: no
   roles:
     - afs-deploy 
   tasks:

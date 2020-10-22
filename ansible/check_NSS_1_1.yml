@@ -1,0 +1,17 @@
+- name: Applying Break 1.1
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Get Cluster Host Status
+      shell: . /etc/profile; acli host.list
+      register: output
+    - debug:
+        msg: "{{output}}"
+    - name: Get Cluster HA Status
+      shell: . /etc/profile; acli ha.get
+      register: output
+    - debug:
+        msg: "{{output}}"

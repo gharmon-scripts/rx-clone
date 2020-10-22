@@ -3,10 +3,18 @@
   become: no
   gather_facts: yes
   vars:
-    vmdisk_uuid: "23f72a9f-ca05-4b80-a674-b64f06eaa9ec"
+    vm_image: W2K16_GUI
   vars_prompt:
   roles:
-  tasks:
+  tasks: 
+    - name: Get VM Disk UUID
+      shell: . /etc/profile; acli image.get {{vm_image}} | grep 'vmdisk_uuid:' | awk '{print $2}' | cut -d '"' -f2
+      register: vmdisk_uuid
+    - debug:
+        var: vmdisk_uuid.stdout
+    - set_fact: 
+        vmdisk_uuid: "{{vmdisk_uuid.stdout}}" 
+
     - name: Get VM Container UUID 
       uri:
         url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/containers"

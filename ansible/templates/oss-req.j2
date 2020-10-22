@@ -1,0 +1,22 @@
+name: {{oss_name}}
+  description: {{oss_name}}
+  resources:
+    domain: {{oss_domain}}
+    cluster_reference:
+      kind: cluster
+      uuid: {{cluster_uuid}}
+    buckets_infra_network_dns: {{oss_int_ip1}}
+    buckets_infra_network_vip: ((oss_int_ip2}}
+    buckets_infra_network_reference:
+      kind: subnet
+      uuid:  {{oss_network_uuid}}
+    client_access_network_reference:
+      kind: subnet
+      uuid:  {{oss_network_uuid}}
+    aggregate_resources:
+      total_vcpu_count: 30
+      total_memory_size_mib: 98304
+      total_capacity_gib: 1024
+    client_access_network_ipv4_range:
+      ipv4_start: {{oss_start}}
+      ipv4_end: {{oss_end}}

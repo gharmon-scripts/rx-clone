@@ -1,0 +1,9 @@
+- name: Applying Break to Hyper-V 
+  hosts: renegade-4
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Removing Host Certificate on Hypervisor
+      win_shell:  

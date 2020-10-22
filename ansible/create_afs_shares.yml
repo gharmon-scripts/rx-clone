@@ -1,0 +1,139 @@
+- name: Creating AFS Shares
+  hosts: setup
+  become: no
+  gather_facts: yes
+  ignore_errors: no 
+  vars:
+  roles:
+  tasks: 
+    - name: Get Files Server UUID
+      uri: 
+       url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/?filterCriteria=name&searchString={{afs_name}}&projection=BASIC_INFO"
+       user: admin
+       method: GET
+       password: "{{pwd}}"
+       force_basic_auth: yes
+       validate_certs: no
+      register: output
+    - set_fact: 
+        afs_uuid: "{{item}}"
+      with_items: "{{output.json | to_json | from_json | json_query(query)}}"
+      vars:
+        query: "entities[*].uuid"
+    - debug:
+        msg: "{{afs_uuid}}"
+
+    - set_fact:
+        request: "{{lookup('template','afs-smb-share-homes.j2') | from_yaml | to_json}}"
+
+    - debug:
+        msg: "{{request}}"
+     
+    - name: Create File Share - Homes$
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/{{afs_uuid}}/shares" 
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        body_format: json
+        body: "{{request}}"
+        force_basic_auth: yes
+        status_code: 200
+        validate_certs: no
+        return_content: yes
+      register: output
+    - debug:
+        msg: "Share Creation Task ID is {{output.json.taskUuid}}"
+    - set_fact:
+        task_uuid: "{{output.json.taskUuid}}"
+
+    - name: checking file creation status
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/{{task_uuid}}"
+        method: GET
+        validate_certs: no
+        status_code: 200
+        user: "admin"
+        password: "{{ pwd }}"
+        force_basic_auth: yes
+      register: status
+      until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+      retries: 5
+      delay: 30
+
+    - debug:
+        msg: "Task completed with result: {{status.json.progress_status}}" 
+
+    - set_fact:
+        request: "{{lookup('template','afs-smb-share-public.j2') | from_yaml | to_json}}"
+    - name: Create File Share - Public
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/{{afs_uuid}}/shares"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        body_format: json
+        body: "{{request}}"
+        force_basic_auth: yes
+        status_code: 200
+        validate_certs: no
+        return_content: yes
+      register: output
+    - debug:
+        msg: "Share Creation Task ID is {{output.json.taskUuid}}"
+    - set_fact:
+        task_uuid: "{{output.json.taskUuid}}"
+
+    - name: checking file creation status
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/{{task_uuid}}"
+        method: GET
+        validate_certs: no
+        status_code: 200
+        user: "admin"
+        password: "{{ pwd }}"
+        force_basic_auth: yes
+      register: status
+      until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+      retries: 5
+      delay: 30
+
+    - debug:
+        msg: "Task completed with result: {{status.json.progress_status}}"
+
+    - set_fact:
+        request: "{{lookup('template','afs-smb-share-groups.j2') | from_yaml | to_json}}"
+    - name: Create File Share - Groups
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/vfilers/{{afs_uuid}}/shares"
+        user: admin
+        method: POST
+        password: "{{pwd}}"
+        body_format: json
+        body: "{{request}}"
+        force_basic_auth: yes
+        status_code: 200
+        validate_certs: no
+        return_content: yes
+      register: output
+    - debug:
+        msg: "Share Creation Task ID is {{output.json.taskUuid}}"
+    - set_fact:
+        task_uuid: "{{output.json.taskUuid}}"
+
+    - name: checking file creation status
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/tasks/{{task_uuid}}"
+        method: GET
+        validate_certs: no
+        status_code: 200
+        user: "admin"
+        password: "{{ pwd }}"
+        force_basic_auth: yes
+      register: status
+      until: status.json.progress_status == 'Succeeded' or status.json.progress_status == 'Failed'
+      retries: 5
+      delay: 30
+
+    - debug:
+        msg: "Task completed with result: {{status.json.progress_status}}"

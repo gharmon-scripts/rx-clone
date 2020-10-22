@@ -1,0 +1,4 @@
+- name: Downloading PC Bits
+  shell: . /etc/profile; ncli software download software-type=Prism_Central_Deploy name={{pc_ver}}
+- name: Downloading Files Bits
+  shell: . /etc/profile; ncli software download software-type=files name={{afs_ver}}

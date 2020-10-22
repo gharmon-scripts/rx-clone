@@ -1,15 +1,25 @@
 [setup]
-#castlevania pwd=nx2Tech075!
-mariokart
+pilotwings
 [setup:vars]
-pwd=nx2Tech929!
+pwd=nx2Tech093!
 
 [setup_pc]
-mariokart_pc
+pilotwings_pc
 [setup_pc:vars]
-pc_pwd=nx2Tech929!
+pc_pwd=nx2Tech093!
+
+[windows]
+pilotwings-vm1 ansible_host=10.63.23.124
+pilotwings-vm2 ansible_host=10.63.23.209
+
+[windows:vars]
+ansible_user=administrator
+ansible_password=nutanix/4u
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
 
 [all:vars]
-pwd=nx2Tech929!
-pc_pwd=nx2Tech929!
+pwd=nx2Tech093!
+pc_pwd=nx2Tech093!
 

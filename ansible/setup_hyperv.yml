@@ -1,6 +1,39 @@
-[setup_hyperv]
-persona
-[setup_hyperv:vars]
-pwd=nx2Tech895!
 [setup]
-persona
+renegade
+[setup:vars]
+pwd=nx2Tech319!
+
+[setup_pc]
+renegade_pc
+[setup_pc:vars]
+pc_pwd=nx2Tech319!
+
+[hyperv]
+renegade-1  ansible_host=10.63.29.91
+renegade-2  ansible_host=10.63.29.92
+renegade-3  ansible_host=10.63.29.93
+renegade-4  ansible_host=10.63.29.94
+
+[hyperv:vars]
+ansible_user=administrator
+ansible_password=nutanix/4u
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+
+
+[windows]
+renegade-vm1 ansible_host=10.63.22.161
+#renegade-vm2 ansible_host=10.63.23.209
+
+[windows:vars]
+ansible_user=administrator
+ansible_password=nutanix/4u
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+
+[all:vars]
+pwd=nx2Tech319!
+pc_pwd=nx2Tech319!
+

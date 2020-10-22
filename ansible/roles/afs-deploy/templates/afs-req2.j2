@@ -2,17 +2,17 @@ name: {{afs_name}}
 dnsDomainName: {{afs_domain}}
 sizeGib: "1024"
 internalNetwork:
-  subnetMask: "255.255.254.0"
-  defaultGateway: "10.63.36.1"
-  uuid: {{subnet_uuid}}
+  subnetMask: {{ansible_default_ipv4.netmask}}
+  defaultGateway: {{ansible_default_ipv4.gateway}}
+  uuid: {{internal_subnet_uuid}}
   pool: 
-  - "10.63.36.249 10.63.36.252"
+  - {{internal_pool}}
 externalNetworks:
 - subnetMask: "255.255.254.0"
   defaultGateway: "10.63.36.1"
   uuid: {{subnet_uuid}}
   pool: 
-   - "10.63.36.253 10.63.36.255"
+   - {{external_pool}}
 dnsServerIpAddresses: 
 - {{afs_dns}}
 ntpServers: 

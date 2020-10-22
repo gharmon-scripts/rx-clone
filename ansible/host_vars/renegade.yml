@@ -1,8 +1,20 @@
 ---
-"pwd": "nx2Tech645!"
 "pc_ip": "10.63.31.95"
 "afs_name": "renegade-fs"
 "vg_name": "renegade-vg"
+"afs_domain": "dur.sre-labs.nutanix.com"
+"afs_admin": "administrator"
+"afs_dns": "10.63.25.40"
+"afs_ntp": "10.63.25.20"
+"afs_admin_pwd": "SREs4eva!"
+"internal_pool": "10.63.31.111 10.63.31.114"
+"external_pool": ""
+"oss_start": ""
+"oss_end": ""
+"oss_domain": "dur-sre-labs.nutanix.com"
+"oss_name": "renegade-fs"
+"ipam_start": ""
+"ipam_end": ""
 "cvm1": "10.63.30.91"
 "cvm2": "10.63.30.92"
 "cvm3": "10.63.30.93"
@@ -15,3 +27,7 @@
 "ipmi2": "10.63.28.92"
 "ipmi3": "10.63.28.93"
 "ipmi4": "10.63.28.94"
+cluster_name: renegade
+dsip: 10.63.28.95
+cluster_uuid: 0005b22f-87f0-6896-0000-000000024c81
+nodes: 4

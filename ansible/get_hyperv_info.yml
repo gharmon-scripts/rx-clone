@@ -1,0 +1,12 @@
+- name: Gather Hyper-V Cluster Infomration 
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  roles:
+  tasks:
+    - name: Getting Node Information 
+      shell: . /etc/profile; ncli host ls | egrep Id -A2
+      register: output
+    - debug:
+        msg: "{{output}}"
