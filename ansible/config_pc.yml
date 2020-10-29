@@ -1,11 +1,20 @@
-- name: Complete Prism Central Configiratiokn
+- name: Complete Prism Central Configuration
   hosts: setup_pc 
   become: no
   gather_facts: yes 
+  ignore_errors: yes
   vars:
   vars_prompt:
   roles:
   tasks:
+    - name: Add SSH KEY
+      copy:
+        src: ~/.ssh/id_rsa.pub
+        dest: /tmp/id_rsa.pub
+    - name: Adding Key to Cluster
+      shell: . /etc/profile; ncli cluster add-public-key name=SW-LNX-MGMT file-path=/tmp/id_rsa.pub  
+    - name: Setting NTP Server
+      shell: . /etc/profile; ncli cluster add-to-ntp-servers servers=10.63.25.20
     - name: Changing Prism Central Password
       shell: . /etc/profile; ncli user reset-password user-name=admin password={{pwd}}
     - name: Post EULA

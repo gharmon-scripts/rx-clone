@@ -1,18 +1,18 @@
 [setup]
-renegade
+magicaldrop ansible_password=nx2Tech325!
 [setup:vars]
-pwd=nx2Tech319!
+pwd=nx2Tech325!
 
 [setup_pc]
-renegade_pc
+magicaldrop_pc
 [setup_pc:vars]
-pc_pwd=nx2Tech319!
+pc_pwd=nx2Tech325!
 
 [hyperv]
-renegade-1  ansible_host=10.63.29.91
-renegade-2  ansible_host=10.63.29.92
-renegade-3  ansible_host=10.63.29.93
-renegade-4  ansible_host=10.63.29.94
+magicaldrop-1  ansible_host=10.63.29.91
+magicaldrop-2  ansible_host=10.63.29.92
+magicaldrop-3  ansible_host=10.63.29.93
+magicaldrop-4  ansible_host=10.63.29.94
 
 [hyperv:vars]
 ansible_user=administrator
@@ -23,8 +23,8 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [windows]
-renegade-vm1 ansible_host=10.63.22.161
-#renegade-vm2 ansible_host=10.63.23.209
+magicaldrop-vm1 ansible_host=10.63.22.161
+magicaldrop-vm2 ansible_host=10.63.23.209
 
 [windows:vars]
 ansible_user=administrator
@@ -34,6 +34,6 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [all:vars]
-pwd=nx2Tech319!
-pc_pwd=nx2Tech319!
+pwd=nx2Tech325!
+pc_pwd=nx2Tech325!
 

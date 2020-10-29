@@ -1,5 +1,6 @@
 ---
 # tasks file for roles/ahv
+- include: deploy_key_and_config_auth.yml
 - include: post_eula.yml
 - include: put_pulse.yml
 - include: create_ctrs.yml

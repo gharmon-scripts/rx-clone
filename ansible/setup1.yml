@@ -1,0 +1,25 @@
+[setup]
+freedomplanet
+[setup:vars]
+pwd=nx2Tech210!
+
+[setup_pc]
+FreedomPlanet_pc
+[setup_pc:vars]
+pc_pwd=nx2Tech210!
+
+[windows]
+FreedomPlanet-vm1 ansible_host=10.63.23.124
+FreedomPlanet-vm2 ansible_host=10.63.23.209
+
+[windows:vars]
+ansible_user=administrator
+ansible_password=nutanix/4u
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
+
+[all:vars]
+pwd=nx2Tech210!
+pc_pwd=nx2Tech210!
+

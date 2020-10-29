@@ -1,16 +1,16 @@
 [setup]
-pilotwings
+persona ansible_password=nx2Tech894!
 [setup:vars]
-pwd=nx2Tech093!
+pwd=nx2Tech894!
 
 [setup_pc]
-pilotwings_pc
+persona_pc ansible_password=nutanix/4u
 [setup_pc:vars]
-pc_pwd=nx2Tech093!
+pc_pwd=nx2Tech894!
 
 [windows]
-pilotwings-vm1 ansible_host=10.63.23.124
-pilotwings-vm2 ansible_host=10.63.23.209
+persona-vm1 ansible_host=10.63.23.124
+persona-vm2 ansible_host=10.63.23.209
 
 [windows:vars]
 ansible_user=administrator
@@ -18,8 +18,20 @@ ansible_password=nutanix/4u
 ansible_connection=winrm
 ansible_winrm_server_cert_validation=ignore
 
+[hyperv]
+persona-1  ansible_host=10.63.29.111
+persona-2  ansible_host=10.63.29.112
+persona-3  ansible_host=10.63.29.113
+persona-4  ansible_host=10.63.29.114
+
+[hyperv:vars]
+ansible_user=administrator
+ansible_password=nutanix/4u
+ansible_connection=winrm
+ansible_winrm_server_cert_validation=ignore
+
 
 [all:vars]
-pwd=nx2Tech093!
-pc_pwd=nx2Tech093!
+pwd=nx2Tech894!
+pc_pwd=nx2Tech894!
 

@@ -1,9 +1,10 @@
 - name: Applying Break to Hyper-V 
-  hosts: renegade-4
+  hosts:  pilotwings-3
   become: no
   gather_facts: yes
   vars:
   roles:
   tasks:
     - name: Removing Host Certificate on Hypervisor
-      win_shell:  
+      win_shell:  get-childitem -Recurse Microsoft.PowerShell.Security\Certificate::LocalMachine\TrustedPeople | where-object {$_.Subject -eq "CN=nutanix, OU=Manageability, O=Nutanix Inc., L=San Jose, S=CA, C=US"} | Remove-Item 
+

@@ -1,0 +1,12 @@
+- name: Deploying SSH to Cluster
+  hosts: setup
+  become: no
+  gather_facts: ye
+  vars:
+  roles:
+  tasks:
+    - name: Copying Key to TMP Dir
+      copy: 
+        src: /home/swhite/.ssh/id_rsa.pub
+        dest: /tmp/id_rsa.pub
+     
