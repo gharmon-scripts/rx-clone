@@ -1,4 +1,5 @@
 ---
 # tasks file for roles/hyperv
+- include: deploy_key_and_config_auth.yml
 - include: post_eula.yml
 - include: put_pulse.yml

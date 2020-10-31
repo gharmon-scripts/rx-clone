@@ -1,18 +1,18 @@
 [setup]
-magicaldrop ansible_password=nx2Tech325!
+magicaldrop ansible_password=nx2Tech824!
 [setup:vars]
-pwd=nx2Tech325!
+pwd=nx2Tech824!
 
 [setup_pc]
 magicaldrop_pc
 [setup_pc:vars]
-pc_pwd=nx2Tech325!
+pc_pwd=nx2Tech824!
 
 [hyperv]
-magicaldrop-1  ansible_host=10.63.29.91
-magicaldrop-2  ansible_host=10.63.29.92
-magicaldrop-3  ansible_host=10.63.29.93
-magicaldrop-4  ansible_host=10.63.29.94
+magicaldrop-1  ansible_host=10.63.17.26
+magicaldrop-2  ansible_host=10.63.17.27
+magicaldrop-3  ansible_host=10.63.17.28
+magicaldrop-4  ansible_host=10.63.17.29
 
 [hyperv:vars]
 ansible_user=administrator
@@ -34,6 +34,6 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [all:vars]
-pwd=nx2Tech325!
-pc_pwd=nx2Tech325!
+pwd=nx2Tech824!
+pc_pwd=nx2Tech824!
 

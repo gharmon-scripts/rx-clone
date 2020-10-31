@@ -1,0 +1,23 @@
+- name: Checking Break 5.3 
+  hosts: setup
+  become: no
+  gather_facts: yes
+  ignore_errors: yes
+  vars:
+  roles:
+  tasks:
+    - name: Getting IP for Break
+      shell: . /etc/profile; svmips | awk {'print $2'}
+      register: ip_output
+    - debug:
+        msg: "{{ip_output.stdout}}"
+    - name: Getting Networking
+      shell: ssh {{ip_output.stdout}} '. /etc/profile; manage_ovs show_interfaces'
+      register: net_output
+    - debug:
+        msg: "{{net_output.stdout_lines}}" 
+    - name: Check Cluster Status
+      shell: . /etc/profile; cluster status | grep -v UP
+      register: cluster_output
+    - debug:
+        msg: "{{cluster_output.stdout_lines}}"
