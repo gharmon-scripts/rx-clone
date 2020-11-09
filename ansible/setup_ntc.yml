@@ -1,16 +1,16 @@
 [setup]
-magicaldrop ansible_password=nx2Tech187!
+magicaldrop ansible_password=nx2Tech182!
 [setup:vars]
-pwd=nx2Tech187!
+pwd=nx2Tech182!
 
 [setup_pc]
 magicaldrop_pc ansible_password=nutanix/4u
 [setup_pc:vars]
-pc_pwd=nx2Tech187!
+pc_pwd=nx2Tech182!
 
 [windows]
-magicaldrop-vm1 ansible_host=10.63.23.124
-magicaldrop-vm2 ansible_host=10.63.23.209
+magicaldrop-vm1 ansible_host=10.63.22.6
+#magicaldrop-vm2 ansible_host=10.63.23.209
 
 [windows:vars]
 ansible_user=administrator
@@ -32,6 +32,6 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [all:vars]
-pwd=nx2Tech187!
-pc_pwd=nx2Tech187!
+pwd=nx2Tech182!
+pc_pwd=nx2Tech182!
 

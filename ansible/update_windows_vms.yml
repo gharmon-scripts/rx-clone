@@ -1,0 +1,26 @@
+- name: Update Windows VMs 
+  hosts: windows
+  become: no
+  gather_facts: no
+  vars:
+  roles: 
+  tasks:
+    - name: Search for needed updates
+      ansible.windows.win_updates:
+        category_names: 
+          - SecurityUpdates
+          - CriticalUpdates
+          - UpdateRollups
+        state: searched
+        log_path: C:\ansible_wu.txt
+      register: output
+    - debug:
+        msg: "{{output}}" 
+
+    - name: Install all updates with automatic reboots
+      ansible.windows.win_updates:
+        category_names:
+          - SecurityUpdates
+          - CriticalUpdates
+          - UpdateRollups
+        reboot: yes
