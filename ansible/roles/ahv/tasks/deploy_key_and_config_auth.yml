@@ -4,7 +4,7 @@
     src: ~/.ssh/id_rsa.pub
     dest: /tmp/id_rsa.pub
 - name: Importing Key to Cluster
-  shell: . /etc/profile; ncli cluster add-public-key name=SW-LNX-MGMT 
+  shell: . /etc/profile; ncli cluster add-public-key name=LNX-MGMT 
         file-path=/tmp/id_rsa.pub
 - name: Adding Dur Domain to Cluster Authentication
   shell: . /etc/profile; ncli authconfig add-directory 
