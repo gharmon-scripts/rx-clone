@@ -3,3 +3,7 @@
 - include: deploy_key_and_config_auth.yml
 - include: post_eula.yml
 - include: put_pulse.yml
+- include: join_ad_hyper-v.yml
+- include: create_foc.yml
+- include: create_ctr.yml
+- include: add_whitelist.yml

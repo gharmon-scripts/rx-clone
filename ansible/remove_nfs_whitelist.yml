@@ -1,0 +1,24 @@
+- name: Add NFS Whitelist [10.63.0.0/255.255.0.0] 
+  hosts: setup
+  become: no
+  gather_facts: yes 
+  vars:
+  roles:
+  tasks:
+    - set_fact:
+        request: "{{lookup('file','hyperv_dur_whitelist.json')}}"
+    
+    - debug:
+        msg: "{{request}}"
+
+    - name: Adding Network to whitelist
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/cluster/nfs_whitelist/remove_list"
+        user: admin
+        method: DELETE 
+        password: "{{pwd}}"
+        body_format: json
+        body: "{{request}}"
+        force_basic_auth: yes
+        status_code: 200
+        validate_certs: no

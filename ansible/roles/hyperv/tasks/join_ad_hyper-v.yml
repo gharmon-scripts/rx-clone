@@ -1,0 +1,28 @@
+- set_fact:
+    request: "{{lookup('template','domain_join.j2') | from_yaml | to_json}}"
+
+- name: Starting AD Domain Join to Learn
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/cluster/join_all_to_domain"
+    method: POST
+    validate_certs: no
+    user: "admin"
+    password: "{{pwd}}"
+    body_format: json
+    body: "{{request}}"
+    force_basic_auth: yes
+    status_code: 200
+
+#- name: Waiting for Host to Complete Reboot after Domain Join
+#  block:
+#    - name: Awaiting for Prism to come online
+#      wait_for:
+#        connect_timeout: 600
+#        port: 9440
+#        delay: 600
+#        sleep: 60
+#        timeout: 1800
+
+- name: Pause Playbook for Cluster Reboot 
+  pause:
+    prompt: "Verify Cluster/Prism has comeback online"

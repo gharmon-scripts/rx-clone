@@ -1,0 +1,14 @@
+- set_fact:
+    request: "{{lookup{'template','hyper-v_whitelist-req.j2') | from_yaml | to_json}}"
+
+- name: Adding Storage Whitelist [10.63.0.0/255.255.0.0]
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/cluster/nfs_whitelist"
+    user: admin
+    method: POST
+    password: "{{pwd}}"
+    body_format: json
+    body: "{{request}}"
+    force_basic_auth: yes
+    status_code: 200
+    validate_certs: no

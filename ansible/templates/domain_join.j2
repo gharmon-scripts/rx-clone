@@ -1,0 +1,20 @@
+domainDescriptor:
+  domainName: {{afs_domain}}
+  nameServer: {{afs_dns}}
+  ouPath: 'ou=clusters,ou=swhite,dc=dur,dc=sre-labs,dc=nutanix,dc=com'
+  namePrefix: ''
+credential:
+  logonName: {{afs_domain}}\{{afs_admin}}
+  password: {{afs_admin_pwd}}
+nosClusterDescriptor:
+  clusterName: {{ansible_host}}
+  virtualIp: {{vip}}
+nodeDescriptors:
+- nodeId: {{cluster_uuid}}::7
+  name: {{ansible_host}}-1
+- nodeId: {{cluster_uuid}}::8
+  name: {{ansible_host}}-2
+- nodeId: {{cluster_uuid}}::9
+  name: {{ansible_host}}-3
+- nodeId: {{cluster_uuid}}::10
+  name: {{ansible_host}}-4

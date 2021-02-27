@@ -1,0 +1,13 @@
+- name: Configuration Centralized Authentication for Prism Central 
+  hosts: setup_pc
+  become: no
+  gather_facts: yes
+  ignore_errors: yes
+  vars:
+  roles:
+  tasks:
+    - name: Adding Durham Domain to Cluster
+      shell: . /etc/profile; ncli authconfig add-directory directory-type=ACTIVE_DIRECTORY connection-type=LDAP directory-url=ldap://dur.sre-labs.nutanix.com domain=dur.sre-labs.nutanix.com name=DUR service-account-username=ntnx1@dur.sre-labs.nutanix.com service-account-password=SREs4eva!
+    - name: Adding Role Mapping for Group NTNX_GRP
+      shell: . /etc/profile; ncli authconfig add-role-mapping name=DUR role=ROLE_USER_ADMIN entity-type=group entity-values=ntnx_grp
+     

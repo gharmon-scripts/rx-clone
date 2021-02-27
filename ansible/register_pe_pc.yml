@@ -7,7 +7,7 @@
   vars_prompt:
   pre_tasks:
     - debug:
-        msg: 'Staring Configration'
+        msg: 'Staring Configuration'
 
   roles:
     - pc-register 

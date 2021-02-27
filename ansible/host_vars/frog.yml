@@ -1,6 +1,5 @@
 ---
-"cluster_uuid": "0005bc02-28b2-cac6-0000-00000000b7a4"
-"pc_ip": "10.63.19.120"
+"pc_ip": "10.63.19.65"
 "afs_name": "punchout-fs"
 "afs_domain": "dur.sre-labs.nutanix.com"
 "afs_admin": "administrator"
@@ -9,6 +8,3 @@
 "afs_admin_pwd": "SREs4eva!"
 "internal_pool": "10.63.19.116 10.63.19.119"
 "external_pool": ""
-"vip": "10.63.18.120"
-"dsip": "10.63.16.120"
-"foc": "10.63.17.120"

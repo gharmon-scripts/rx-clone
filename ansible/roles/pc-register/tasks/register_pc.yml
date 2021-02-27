@@ -1,4 +1,4 @@
-- name: Register Prsim Element to Prism Central
+- name: Register Prism Element to Prism Central
   uri:
     url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/multicluster/add_to_multicluster"
     method: POST

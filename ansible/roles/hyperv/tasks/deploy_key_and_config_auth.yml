@@ -1,11 +1,18 @@
-- name: Copying Key to TMP Dir
-   copy: 
-     src: ~/.ssh/id_rsa.pub
-     dest: /tmp/id_rsa.pub
- - name: Importing Key to Cluster
-   shell: . /etc/profile; ncli cluster add-public-key name=SW-LNX-MGMT file-path=/tmp/id_rsa.pub
- - name: Adding Durham Domain to Cluster
-   shell: . /etc/profile; ncli authconfig add-directory directory-type=ACTIVE_DIRECTORY connection-type=LDAP directory-url=ldap://dur.sre-labs.nutanix.com domain=dur.sre-labs.nutanix.com name=DUR service-account-username=ntnx1@dur.sre-labs.nutanix.com service-account-password=SREs4eva!
- - name: Adding Role Mapping for Group NTNX_GRP
-   shell: . /etc/profile; ncli authconfig add-role-mapping name=DUR role=ROLE_USER_ADMIN entity-type=group entity-values=ntnx_grp
-     
+---
+- name: Deploy SSH Key to Cluster
+  copy:
+    src: ~/.ssh/id_rsa.pub
+    dest: /tmp/id_rsa.pub
+- name: Importing Key to Cluster
+  shell: . /etc/profile; ncli cluster add-public-key name=LNX-MGMT 
+        file-path=/tmp/id_rsa.pub
+- name: Adding Dur Domain to Cluster Authentication
+  shell: . /etc/profile; ncli authconfig add-directory 
+         directory-type=ACTIVE_DIRECTORY connection-type=LDAP 
+         directory-url=ldap://dur.sre-labs.nutanix.com domain=dur.sre-labs.nutanix.com 
+         name=Dur service-account-username=ntnx1@dur.sre-labs.nutanix.com 
+         service-account-password=SREs4eva!
+- name: Adding Role Mapping for Group NTNX_GRP
+  shell:  . /etc/profile; ncli authconfig add-role-mapping name=Dur 
+         role=ROLE_USER_ADMIN entity-type=group entity-values=ntnx_grp
+

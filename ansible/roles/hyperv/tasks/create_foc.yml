@@ -1,0 +1,13 @@
+- name: Creating Failover Cluster [FC]
+  uri:
+    url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/hosts/failover_cluster"
+    method: POST
+    validate_certs: no
+    user: "admin"
+    password: "{{pwd}}"
+    body_format: json
+    body: {"name":"{{ansible_host}}-fc","ipAddress":"{{foc}}","credential":{"logonName":"{{afs_domain}}\\{{afs_admin}}","password":"{{afs_admin_pwd}}"},"memberNodes":null}
+    force_basic_auth: yes
+    return_content: yes
+    status_code: -1
+  register: output

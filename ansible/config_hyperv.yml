@@ -3,6 +3,7 @@
   hosts: setup
   become: no
   gather_facts: yes
+  ignore_errors: yes 
   vars:
   vars_prompt:
   pre_tasks:

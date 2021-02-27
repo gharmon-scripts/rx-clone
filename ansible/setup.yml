@@ -1,17 +1,23 @@
 [setup]
-magicaldrop ansible_password=nx2Tech625!
-renegade ansible_password=nx2Tech302!
+#punchout ansible_password=nx2Tech974!
+#magicaldrop ansible_password=nx2Tech605!
+#frog ansible_password=nx2Tech836!
+guldan ansible_password=nx2Tech106!
 [setup:vars]
-#pwd=nx2Tech625!
+pwd=nx2Tech836!
 
 [setup_pc]
-magicaldrop_pc ansible_password=nutanix/4u
+#punchout_pc ansible_password=nutanix/4u
+#magicaldrop_pc ansible_password=nutanix/4u
+#frog_pc ansible_password=nutanix/4u
+guldan_pc ansible_password=nx2Tech106!
+
 [setup_pc:vars]
-pc_pwd=nx2Tech625!
+pc_pwd=nx2Tech106!
 
 [windows]
-magicaldrop-vm1 ansible_host=10.63.23.124
-magicaldrop-vm2 ansible_host=10.63.23.209
+punchout-vm1 ansible_host=10.63.23.124
+punchout-vm2 ansible_host=10.63.23.209
 
 [windows:vars]
 ansible_user=administrator
@@ -20,10 +26,10 @@ ansible_connection=winrm
 ansible_winrm_server_cert_validation=ignore
 
 [hyperv]
-magicaldrop-1  ansible_host=10.63.29.111
-magicaldrop-2  ansible_host=10.63.29.112
-magicaldrop-3  ansible_host=10.63.29.113
-magicaldrop-4  ansible_host=10.63.29.114
+punchout-1  ansible_host=10.63.29.111
+punchout-2  ansible_host=10.63.29.112
+punchout-3  ansible_host=10.63.29.113
+punchout-4  ansible_host=10.63.29.114
 
 [hyperv:vars]
 ansible_user=administrator
@@ -33,6 +39,6 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [all:vars]
-pwd=nx2Tech625!
-pc_pwd=nx2Tech625!
+pwd=nx2Tech106!
+pc_pwd=nx2Tech106!
 

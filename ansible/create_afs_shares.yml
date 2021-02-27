@@ -2,7 +2,7 @@
   hosts: setup
   become: no
   gather_facts: yes
-  ignore_errors: no 
+  ignore_errors: yes 
   vars:
   roles:
   tasks: 

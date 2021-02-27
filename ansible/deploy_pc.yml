@@ -15,5 +15,5 @@
 
   post_tasks:
     - debug:
-        msg: 'Cluster configuration Complete'
+        msg: 'Cluster Configuration Complete'
 
