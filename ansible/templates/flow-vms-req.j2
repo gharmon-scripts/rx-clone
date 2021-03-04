@@ -1,0 +1,155 @@
+vm_image: CentOS8
+name: flow-client-vm 
+memory_mb: 4096
+num_vcpus: 2
+description: CentOS 8
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: {{vmdisk_uuid}}
+    minimum_size: 42949672960
+vm_nics:
+- network_uuid: {{subnet_uuid}}
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+  userdata: "#cloud-config\nuser: user1\npassword: nutanix\/4u \nchpasswd: {expire:
+    False}\nsudo: ALL=(ALL) NOPASSWD:ALL\nssh_pwauth: True\nssh-authorized-keys:\n
+    \ - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAwKZWWA0Lg5dBclW5z6gAlgpNIXoKaUh4hO5t4miZOwO9jEUnCNEFXDGWiDxdATh95Ok3yA3eve5f4n7wgolU6Roo6yQufhcRKLnVfkLRZjt0oNF6fQ6NaAlQvPvcjCqXxIh8CXNewkbVe+acXTy4Q6zdcAcNKMQasMLKl0JFKQgt74tPll1JGOo53iBWZMqheR4MbPz4xkPsDLlxkAfSeRr2m0vStw/hvGZ/RgpT5Q95Dzop7BSY5DcHXLdC0Nk+qmGrkVKV5oT642BgsJQBbN+HiEyHegef//GLv0F13PC09M+yEimlGAQ3VT+PsxO1BIW7+hxOYJDCquUAy/L+/Q==
+    Calm-Key\nlock-passwd: false  \nruncmd:\n  - hostnamectl set-hostname flow-client\n
+    \ - sed -i -e 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config\n  - systemctl
+    stop firewalld\n  - systemctl disable firewalld\n  - /sbin/setenforce 0"
+  files_to_inject_list: []
+vm_features:
+  AGENT_VM: false
+
+vm_image: CentOS8
+name: flow-db-vm
+memory_mb: 4096
+num_vcpus: 2
+description: CentOS 8
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: {{vmdisk_uuid}}
+    minimum_size: 42949672960
+vm_nics:
+- network_uuid: {{subnet_uuid}}
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+  userdata: "#cloud-config\nuser: user1\npassword: nutanix\/4u \nchpasswd: {expire:
+    False}\nsudo: ALL=(ALL) NOPASSWD:ALL\nssh_pwauth: True\nssh-authorized-keys:\n
+    \ - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAwKZWWA0Lg5dBclW5z6gAlgpNIXoKaUh4hO5t4miZOwO9jEUnCNEFXDGWiDxdATh95Ok3yA3eve5f4n7wgolU6Roo6yQufhcRKLnVfkLRZjt0oNF6fQ6NaAlQvPvcjCqXxIh8CXNewkbVe+acXTy4Q6zdcAcNKMQasMLKl0JFKQgt74tPll1JGOo53iBWZMqheR4MbPz4xkPsDLlxkAfSeRr2m0vStw/hvGZ/RgpT5Q95Dzop7BSY5DcHXLdC0Nk+qmGrkVKV5oT642BgsJQBbN+HiEyHegef//GLv0F13PC09M+yEimlGAQ3VT+PsxO1BIW7+hxOYJDCquUAy/L+/Q==
+    Calm-Key\nlock-passwd: false  \nruncmd:\n  - hostnamectl set-hostname flow-db\n
+    \ - sed -i -e 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config\n  - systemctl
+    stop firewalld\n  - systemctl disable firewalld\n  - /sbin/setenforce 0"
+  files_to_inject_list: []
+vm_features:
+  AGENT_VM: false
+
+vm_image: CentOS8
+name: flow-app-vm
+memory_mb: 4096
+num_vcpus: 2
+description: CentOS 8
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: {{vmdisk_uuid}}
+    minimum_size: 42949672960
+vm_nics:
+- network_uuid: {{subnet_uuid}}
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+  userdata: "#cloud-config\nuser: user1\npassword: nutanix\/4u \nchpasswd: {expire:
+    False}\nsudo: ALL=(ALL) NOPASSWD:ALL\nssh_pwauth: True\nssh-authorized-keys:\n
+    \ - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAwKZWWA0Lg5dBclW5z6gAlgpNIXoKaUh4hO5t4miZOwO9jEUnCNEFXDGWiDxdATh95Ok3yA3eve5f4n7wgolU6Roo6yQufhcRKLnVfkLRZjt0oNF6fQ6NaAlQvPvcjCqXxIh8CXNewkbVe+acXTy4Q6zdcAcNKMQasMLKl0JFKQgt74tPll1JGOo53iBWZMqheR4MbPz4xkPsDLlxkAfSeRr2m0vStw/hvGZ/RgpT5Q95Dzop7BSY5DcHXLdC0Nk+qmGrkVKV5oT642BgsJQBbN+HiEyHegef//GLv0F13PC09M+yEimlGAQ3VT+PsxO1BIW7+hxOYJDCquUAy/L+/Q==
+    Calm-Key\nlock-passwd: false  \nruncmd:\n  - hostnamectl set-hostname flow-app\n
+    \ - sed -i -e 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config\n  - systemctl
+    stop firewalld\n  - systemctl disable firewalld\n  - /sbin/setenforce 0"
+  files_to_inject_list: []
+vm_features:
+  AGENT_VM: false
+
+vm_image: CentOS8
+name: flow-web-vm
+memory_mb: 4096
+num_vcpus: 2
+description: CentOS 8
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: {{vmdisk_uuid}}
+    minimum_size: 42949672960
+vm_nics:
+- network_uuid: {{subnet_uuid}}
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+  userdata: "#cloud-config\nuser: user1\npassword: nutanix\/4u \nchpasswd: {expire:
+    False}\nsudo: ALL=(ALL) NOPASSWD:ALL\nssh_pwauth: True\nssh-authorized-keys:\n
+    \ - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAwKZWWA0Lg5dBclW5z6gAlgpNIXoKaUh4hO5t4miZOwO9jEUnCNEFXDGWiDxdATh95Ok3yA3eve5f4n7wgolU6Roo6yQufhcRKLnVfkLRZjt0oNF6fQ6NaAlQvPvcjCqXxIh8CXNewkbVe+acXTy4Q6zdcAcNKMQasMLKl0JFKQgt74tPll1JGOo53iBWZMqheR4MbPz4xkPsDLlxkAfSeRr2m0vStw/hvGZ/RgpT5Q95Dzop7BSY5DcHXLdC0Nk+qmGrkVKV5oT642BgsJQBbN+HiEyHegef//GLv0F13PC09M+yEimlGAQ3VT+PsxO1BIW7+hxOYJDCquUAy/L+/Q==
+    Calm-Key\nlock-passwd: false  \nruncmd:\n  - hostnamectl set-hostname flow-web\n
+    \ - sed -i -e 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config\n  - systemctl
+    stop firewalld\n  - systemctl disable firewalld\n  - /sbin/setenforce 0"
+  files_to_inject_list: []
+vm_features:
+  AGENT_VM: false

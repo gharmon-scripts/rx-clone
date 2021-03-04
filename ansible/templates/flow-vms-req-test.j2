@@ -1,0 +1,35 @@
+---
+name: flow-client-vm
+memory_mb: 4096
+num_vcpus: 2
+description: 
+num_cores_per_vcpu: 1
+timezone: America/New_York
+boot:
+  uefi_boot: false
+  boot_device_order:
+  - CDROM
+  - DISK
+  - NIC
+vm_disks:
+- is_cdrom: true
+  is_empty: true
+  disk_address:
+    device_bus: ide
+    device_index: 0
+- is_cdrom: false
+  disk_address:
+    device_bus: scsi
+    device_index: 0
+    vmdisk_uuid: 0afb943a-0131-41a7-9a4d-47e0d9e0cc07
+  vm_disk_clone:
+    disk_address:
+      vmdisk_uuid: f62dcb25-70ad-4ee5-8f1a-f34da1ec41a3
+    minimum_size: 10737418240
+vm_nics:
+- network_uuid: d7ad0f5a-9e5a-49a5-af02-6546cb747c06
+  is_connected: true
+hypervisor_type: ACROPOLIS
+vm_customization_config:
+vm_features:
+  AGENT_VM: false

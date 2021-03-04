@@ -5,6 +5,7 @@
 - include: put_pulse.yml
 - include: create_ctrs.yml
 - include: create_networks.yml
+- include: create_vg.yml
 - include: upload_isos.yml
 - include: upload_images.yml
 - include: post_alerts.yml

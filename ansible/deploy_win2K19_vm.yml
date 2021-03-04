@@ -1,0 +1,71 @@
+- name: Deploying Virtual Machines
+  hosts: setup
+  become: no
+  gather_facts: yes
+  vars:
+  vars_prompt:
+    - name: vm_name
+      prompt: Enter the VM Name
+      private: no
+    - name: vm_image
+      prompt: Enter the Winodws VM Image
+      private: no
+    
+  roles:
+  tasks: 
+    - name: Get VM Disk UUID
+      shell: . /etc/profile; acli image.get {{vm_image}} | grep 'vmdisk_uuid:' | awk '{print $2}' | cut -d '"' -f2
+      register: vmdisk_uuid
+    - debug:
+        var: vmdisk_uuid.stdout
+    - set_fact: 
+        vmdisk_uuid: "{{vmdisk_uuid.stdout}}" 
+
+    - name: Get VM Container UUID 
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/containers"
+        user: admin
+        method: GET
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+      register: output
+    - set_fact:
+        ctr_uuid: "{{item}}}"
+      with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+      vars:
+         query: "entities[?contains(name, 'ctr1')].containerUuid"
+      when: output.json.metadata.totalEntities > 0
+    - debug:
+         msg: "The default container uuid is {{ctr_uuid}}"
+    - name: Get Network UUID
+      uri:
+        url: "https://{{ansible_default_ipv4.address}}:9440/api/nutanix/v2.0/networks"
+        user: admin
+        method: GET
+        password: "{{pwd}}"
+        force_basic_auth: yes
+        validate_certs: no
+      register: output
+    - set_fact:
+        subnet_uuid: "{{item}}"
+      with_items: "{{output.json | to_json | from_json |json_query(query) }}"
+      vars:
+        query: "entities[?contains(name, 'DHCP')].uuid" 
+    
+    - set_fact:
+        request: "{{lookup('template','win-req-2.j2') | from_yaml | to_json}}"
+    - debug:
+        msg: "{{request}}"
+    - name: Deploying Sysprep Windows VM
+      uri:
+       url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v2.0/vms/"
+       user: admin
+       method: POST
+       password: "{{pwd}}"
+       body_format: json
+       body: "{{request}}"
+       force_basic_auth: yes
+       status_code: 201
+       validate_certs: no
+

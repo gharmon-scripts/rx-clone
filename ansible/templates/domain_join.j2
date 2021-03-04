@@ -10,11 +10,11 @@ nosClusterDescriptor:
   clusterName: {{ansible_host}}
   virtualIp: {{vip}}
 nodeDescriptors:
-- nodeId: {{cluster_uuid}}::7
-  name: {{ansible_host}}-1
 - nodeId: {{cluster_uuid}}::8
-  name: {{ansible_host}}-2
+  name: {{ansible_host}}-1
 - nodeId: {{cluster_uuid}}::9
-  name: {{ansible_host}}-3
+  name: {{ansible_host}}-2
 - nodeId: {{cluster_uuid}}::10
+  name: {{ansible_host}}-3
+- nodeId: {{cluster_uuid}}::11
   name: {{ansible_host}}-4

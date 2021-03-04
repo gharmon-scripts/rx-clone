@@ -1,7 +1,7 @@
 - set_fact:
     request: "{{lookup('template','domain_join.j2') | from_yaml | to_json}}"
 
-- name: Starting AD Domain Join to Learn
+- name: Starting AD Domain Join to Durham
   uri:
     url: "https://{{ansible_default_ipv4.address}}:9440/PrismGateway/services/rest/v1/cluster/join_all_to_domain"
     method: POST

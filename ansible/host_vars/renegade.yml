@@ -31,3 +31,5 @@ cluster_name: renegade
 dsip: 10.63.28.95
 cluster_uuid: 0005b22f-87f0-6896-0000-000000024c81
 nodes: 4
+vip: 10.63.30.95
+foc: 10.63.29.95

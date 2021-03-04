@@ -1,0 +1,11 @@
+- name: Join Windows VM to AD Domain - DUR
+  hosts: windows
+  become: no
+  gather_facts: yes 
+  vars:
+  roles:
+  tasks:
+    - name: Joining Domain
+      win_shell: netdom join {{inventory_hostname}} /d:dur.sre-labs.nutanix.com /ud:dur\ntnx1 /pd:SREs4eva!  
+    - name: Restarting Windows VM
+      win_shell: restart-computer -force

@@ -1,0 +1,9 @@
+- name: Rename Windows Hosts
+  hosts: windows
+  become: no
+  gather_facts: yes 
+  vars:
+  roles:
+  tasks:
+    - name: Renaming Windows Virtual Machime
+      win_shell: rename-computer {{inventory_hostname}} -restart -force

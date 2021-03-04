@@ -1,0 +1,21 @@
+- name: Removing AD Objects for AD
+  hosts: ad
+  become: no
+  gather_facts: no
+  vars:
+  vars_prompt:
+     name: cluster_name
+     prompt: Provide the clustername
+     private: no
+  roles:
+  tasks:
+    - name: Checking for Existing AD Object
+      win_shell: get-adcomputer -Filter {name -like '{{cluster_name}}*'} | ft name
+      register: output
+    - debug:
+        msg: "{{output.stdout_lines}}"
+    - name: Setting Accidental Deletion to False on AD Objects
+      win_shell: get-adcomputer -Filter {name -like '{{cluster_name}}*'} | Set-ADObject -ProtectedFromAccidentalDeletion:$false
+    - name: Removing existing AD Object
+      win_shell: get-adobject -Filter {name -like '{{cluster_name}}*'} | Remove-Adobject -confirm:$false -recursive
+      when: output.stdout_lines != ''

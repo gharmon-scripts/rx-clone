@@ -1,11 +1,11 @@
 [setup]
 #pilotwings ansible_password=nx2Tech239!
 #persona ansible_password=nx2Tech458!
-#renegade ansible_password=nx2Tech643!
-punchout ansible_password=nx2Tech713!
+renegade pwd=nx2Tech232! ansible_password=nx2Tech232!
+#punchout ansible_password=nx2Tech713!
 
 [setup:vars]
-pwd=nx2Tech713!
+#pwd=nx2Tech232!
 
 [setup_pc]
 pilotwings_pc
@@ -23,15 +23,15 @@ pc_pwd=nx2Tech458!!
 #persona-3  ansible_host=10.63.16.13
 #persona-4  ansible_host=10.63.16.14
 
-#renegade-1 ansible_host=10.63.29.91
-#renegade-2 ansible_host=10.63.29.92
-#renegade-3 ansible_host=10.63.29.93
-#renegade-4 ansible_host=10.63.29.94
+renegade-1 ansible_host=10.63.29.91
+renegade-2 ansible_host=10.63.29.92
+renegade-3 ansible_host=10.63.29.93
+renegade-4 ansible_host=10.63.29.94
 
-punchout-1 ansible_host=10.63.17.116
-punchout-2 ansible_host=10.63.17.117
-punchout-3 ansible_host=10.63.17.118
-punchout-4 ansible_host=10.63.17.119
+#punchout-1 ansible_host=10.63.17.116
+#punchout-2 ansible_host=10.63.17.117
+#punchout-3 ansible_host=10.63.17.118
+#punchout-4 ansible_host=10.63.17.119
 
 [hyperv:vars]
 ansible_user=administrator
@@ -58,6 +58,6 @@ ansible_winrm_server_cert_validation=ignore
 
 
 [all:vars]
-pwd=nx2Tech713!
-pc_pwd=nx2Tech713!
+pwd=nx2Tech232!
+pc_pwd=nx2Tech232!
 
